@@ -245,9 +245,9 @@ async def run():
         logger.error("BOT_TOKEN or CHANNEL_ID missing from GitHub Secrets!")
         return
     bot = Bot(token=BOT_TOKEN)
-    symbol, timeframe = get_scheduled_task()
-    if symbol and timeframe:
-        await send_analysis(bot, symbol, timeframe)
+    # Temporary Test Override
+    symbol, timeframe = 'BTC/USDT', '1d'
+    await send_analysis(bot, symbol, timeframe)
     else:
         logger.info("No scheduled task for this exact time. Exiting cleanly.")
 
