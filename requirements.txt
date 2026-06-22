@@ -1,7 +1,7 @@
 python-telegram-bot==21.7
 ccxt==4.3.42
 pandas==2.2.3
-pandas-ta==0.3.14b1
+pandas-ta @ git+https://github.com/twopirllc/pandas-ta.git
 matplotlib==3.9.2
 APScheduler==3.10.4
 python-dotenv==1.0.1
