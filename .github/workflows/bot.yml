@@ -1,0 +1,48 @@
+name: Crypto Analysis Bot
+
+on:
+  schedule:
+    # Daily Timeframe (1D) - Starts at 09:00 UTC, 15 mins apart
+    - cron: '0 9 * * *'   # 09:00 - BTC
+    - cron: '15 9 * * *'  # 09:15 - ETH
+    - cron: '30 9 * * *'  # 09:30 - BNB
+    - cron: '45 9 * * *'  # 09:45 - SOL
+    - cron: '0 10 * * *'  # 10:00 - XRP
+    - cron: '15 10 * * *' # 10:15 - DOGE
+    
+    # 4H Timeframe - Starts at 21:00 UTC, 15 mins apart
+    - cron: '0 21 * * *'  # 21:00 - BTC
+    - cron: '15 21 * * *' # 21:15 - ETH
+    - cron: '30 21 * * *' # 21:30 - BNB
+    - cron: '45 21 * * *' # 21:45 - SOL
+    - cron: '0 22 * * *'  # 22:00 - XRP
+    - cron: '15 22 * * *' # 22:15 - DOGE
+
+  # Allows you to trigger the bot manually from GitHub UI for testing
+  workflow_dispatch:
+
+jobs:
+  run-analysis:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Bot
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
+          # Passing specific coin and timeframe based on the exact cron time
+          COIN: ${{ github.event.schedule != '' && contains(github.event.schedule, '0 9 * * *') && 'BTC/USDT' || '' }}
+        run: python main.py
