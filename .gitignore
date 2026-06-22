@@ -1,0 +1,26 @@
+# Environment variables (Contains Secrets)
+.env
+
+# Temporary chart images
+chart_*.png
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+
+# Virtual environment
+venv/
+.venv/
+
+# IDE settings
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
