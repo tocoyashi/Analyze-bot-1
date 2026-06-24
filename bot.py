@@ -163,7 +163,7 @@ class CryptoAnalyzer:
         else:
             p4 = f"🎯 **Key Levels:**\nBreak above **{res_str}** ignites upside. Losing **{sup_str}** opens doors for correction.\n\n🟡 **Bias: Neutral** (Buy {buy_c}/6 | Sell {sell_c}/6)"
 
-        return f"{p1}\n\n{p2}\n\n{p3}\n\n{p4}\n\nTechnical Analysis Not Financial Advice.\nBy: @Dr_Python_bot"
+        return f"{p1}\n\n{p2}\n\n{p3}\n\n{p4}\n\nTechnical Analysis Not Financial Advice.\nBy: @Dr\_Python\_bot"
 
     def _create_chart(self, symbol, df, timeframe):
         df_d = df.tail(60).copy()
